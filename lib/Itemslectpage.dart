@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:coupon/couponsWIdgit.dart';
 
 class Itempage extends StatefulWidget {
   const Itempage({super.key});
@@ -15,34 +14,34 @@ class _ItempageState extends State<Itempage> {
   // bool isCouponApplied = true;
   int itemPrice = 300;
   int CouponDIscount = 30;
-  void applyCoupon() {
-    // You can implement your coupon validation logic here.
-    // For simplicity, I'm just checking if the coupon code is not empty.
-    if (couponCode.isNotEmpty) {
-      setState(() {
-        isCouponApplied = true;
-      });
-    } else {
-      // Show an error message if the coupon code is empty.
+  // void applyCoupon() {
+  //   // You can implement your coupon validation logic here.
+  //   // For simplicity, I'm just checking if the coupon code is not empty.
+  //   if (couponCode.isNotEmpty) {
+  //     setState(() {
+  //       isCouponApplied = true;
+  //     });
+  //   } else {
+  //     // Show an error message if the coupon code is empty.
 
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Error'),
-          content: Text(
-            'Please enter a valid coupon code.',
-            style: TextStyle(fontSize: 20),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
-  }
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => AlertDialog(
+  //         title: Text('Error'),
+  //         content: Text(
+  //           'Please enter a valid coupon code.',
+  //           style: TextStyle(fontSize: 20),
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () => Navigator.pop(context),
+  //             child: Text('OK'),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,71 +52,73 @@ class _ItempageState extends State<Itempage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "ITEM NAME",
-                    style: TextStyle(fontSize: 20),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(height: 30),
+                Text(
+                  " ₹ " + (itemPrice - CouponDIscount).toString(),
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.w900),
+                ),
+                Padding(padding: EdgeInsets.only(top: 7.0)),
+                Text(
+                  " ₹ " + itemPrice.toString(),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+                ),
+                Padding(padding: EdgeInsets.only(top: 7.0)),
+                // SizedBox(height: 30.0),
+                Text(
+                  " Legal Consultation with Aadv Rahul ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
                   ),
-                  Text(
-                    this.itemPrice.toString(),
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(height: 30.0),
+            Padding(padding: EdgeInsets.only(top: 20.0)),
+            // SizedBox(height: 30.0),
             TextField(
               decoration: InputDecoration(
                 labelText: 'Enter Coupon Code',
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CouponSelectionPage(),
+                suffixIcon: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Check",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.pink,
                       ),
-                    );
-                  },
-                  icon: Icon(Icons.search),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
                 ),
+                border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: applyCoupon,
+            Container(
+              padding: EdgeInsets.all(8),
+              margin: EdgeInsets.only(top: 16.0),
+              color: Colors.pink.withOpacity(0.12),
               child: Text(
-                'Apply Coupon',
-                style: TextStyle(fontSize: 20),
+                "Get 50% off using NYAAY",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 16.0),
-            isCouponApplied
-                ? Text(
-                    'Coupon applied successfully!',
-                    style: TextStyle(color: Colors.green),
-                  )
-                : Container(),
-            SizedBox(height: 30.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Payable Amount",
-                  style: TextStyle(fontSize: 20),
-                ),
-                isCouponApplied
-                    ? Text(
-                        (this.itemPrice - this.CouponDIscount).toString(),
-                        style: TextStyle(color: Colors.green, fontSize: 20),
-                      )
-                    : Text(
-                        this.itemPrice.toString(),
-                        style: TextStyle(color: Colors.green, fontSize: 20),
-                      ),
-              ],
+            Padding(padding: EdgeInsets.only(top: 55.0)),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 6, color: Colors.black),
+                minimumSize: Size(double.infinity, 50),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+              ),
+              onPressed: () {},
+              child: Text(
+                "Pay",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
             ),
           ],
         ),

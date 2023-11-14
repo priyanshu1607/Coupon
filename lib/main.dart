@@ -1,5 +1,4 @@
 import 'package:coupon/Itemslectpage.dart';
-import 'package:coupon/couponsWIdgit.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -39,6 +38,7 @@ class _CouponScreenState extends State<CouponScreen> {
             builder: (BuildContext context) {
               return Itempage();
             },
+            // margin: EdgeInsets.all(10),
           );
         },
         child: Text('Select Coupons'),
